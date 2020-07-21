@@ -58,7 +58,8 @@ namespace Uppgift2.Console
                         keepGoing = false;
                         break;
                     case "1":
-                        BuyMovieTickets();
+                        var numberOfTickets = AskForInt("How many tickets?: ");
+                        BuyMovieTickets(numberOfTickets);
                         break;
                     case "2":
                         IterateInputTenTimes();
@@ -85,9 +86,72 @@ namespace Uppgift2.Console
             throw new NotImplementedException();
         }
 
-        private static void BuyMovieTickets()
+        /// <summary>
+        /// Asks the age for every ticket to be purchased and prints the total price.
+        /// </summary>
+        /// <param name="numberOfTickets">The number of ticket to be bought</param>
+        private static void BuyMovieTickets(int numberOfTickets = 1)
         {
-            throw new NotImplementedException();
+            double total = 0;
+            for (var i = 0; i < numberOfTickets; i++)
+            {
+                int age = AskForAge($"Age for person {(i + 1)}: ");
+                if (age < 20)
+                {
+                    PrintMessage($"Young adult: {80.ToString("C")}");
+                    total += 80;
+                }
+                else if (age > 64)
+                {
+                    PrintMessage($"Senior: {90.ToString("C")}");
+                    total += 90;
+                }
+                else
+                {
+                    PrintMessage($"Standard: {120.ToString("C")}");
+                    total += 120;
+                }
+            }
+
+            PrintMessage($"Number of persons: {numberOfTickets}\nTotal cost: {total.ToString("C")}");
+        }
+
+        /// <summary>
+        /// Asks for age, continues asking until an integer is given as input.
+        /// </summary>
+        /// <param name="prompt">The text to show as output</param>
+        /// <returns>The given age</returns>
+        private static int AskForAge(string prompt)
+        {
+            while (true)
+            {
+                try
+                {
+                    int age = AskForInt(prompt);
+                    return age;
+                }
+                catch (ArgumentException e)
+                {
+                    PrintMessage(e.Message, ConsoleColor.Red);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Prompts a message and converts the given input to an integer. Throws an ArgumentException if value cannot be parsed.
+        /// </summary>
+        /// <param name="prompt">The message to prompt</param>
+        /// <returns>The parsed integer</returns>
+        private static int AskForInt(string prompt)
+        {
+            var response = AskForString(prompt);
+            var success = Int32.TryParse(response, out int number);
+            if (success)
+            {
+                return number;
+            }
+
+            throw new ArgumentException($"Could not parse {response}", nameof(prompt));
         }
     }
 }
