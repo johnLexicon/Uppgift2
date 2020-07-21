@@ -38,21 +38,27 @@ namespace Uppgift2.Console
             System.Console.WriteLine($"{{0, {menuTitleAlignment}}}", menuTitle);
             System.Console.WriteLine(menuOptions);
 
-            ChangeForeGroundColor(ConsoleColor.Yellow);
-            var userOption = AskForString("Option: ");
-            ChangeForeGroundColor(ConsoleColor.Green);
+            var keepGoing = true;
 
-            switch (userOption)
+            do
             {
-                case "0":
-                    System.Console.WriteLine("You chose to quit the application");
-                    break;
-                default:
-                    ChangeForeGroundColor(ConsoleColor.Red);
-                    System.Console.WriteLine("Wrong input: the value {0} is not a valid option", userOption);
-                    ChangeForeGroundColor(ConsoleColor.Green);
-                    break;
-            }
+                ChangeForeGroundColor(ConsoleColor.Yellow);
+                var userOption = AskForString("Option: ");
+                ChangeForeGroundColor(ConsoleColor.Green);
+
+                switch (userOption)
+                {
+                    case "0":
+                        System.Console.WriteLine("You chose to quit the application");
+                        keepGoing = false;
+                        break;
+                    default:
+                        ChangeForeGroundColor(ConsoleColor.Red);
+                        System.Console.WriteLine("Wrong input: the value {0} is not a valid option", userOption);
+                        ChangeForeGroundColor(ConsoleColor.Green);
+                        break;
+                }
+            } while (keepGoing);
 
             System.Console.ReadKey();
         }
