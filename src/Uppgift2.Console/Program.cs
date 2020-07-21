@@ -52,6 +52,15 @@ namespace Uppgift2.Console
                         System.Console.WriteLine("You chose to quit the application");
                         keepGoing = false;
                         break;
+                    case "1":
+                        BuyMovieTickets();
+                        break;
+                    case "2":
+                        IterateInputTenTimes();
+                        break;
+                    case "3":
+                        TheThirdWord();
+                        break;
                     default:
                         ChangeForeGroundColor(ConsoleColor.Red);
                         System.Console.WriteLine("Wrong input: the value {0} is not a valid option", userOption);
@@ -63,5 +72,19 @@ namespace Uppgift2.Console
             System.Console.ReadKey();
         }
 
+        private static void TheThirdWord()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void IterateInputTenTimes()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void BuyMovieTickets()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
