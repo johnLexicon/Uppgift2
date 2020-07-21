@@ -54,7 +54,6 @@ namespace Uppgift2.Console
                 switch (userOption)
                 {
                     case "0":
-                        // System.Console.WriteLine("You chose to quit the application");
                         PrintMessage("Bye");
                         keepGoing = false;
                         break;
