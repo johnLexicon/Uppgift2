@@ -81,9 +81,19 @@ namespace Uppgift2.Console
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Iterates given text 10 times
+        /// </summary>
         private static void IterateInputTenTimes()
         {
-            throw new NotImplementedException();
+            PrintMessage("Write some text that you want to iterate 10 times");
+            var textToIterate = AskForString("Text to iterate: ");
+            for (int i = 10, counter = 1; i > 0; i--, counter++)
+            {
+                var temp = $"{counter}: {textToIterate} ";
+                PrintMessage(temp, newLine: false);
+            }
+            System.Console.WriteLine();
         }
 
         /// <summary>
