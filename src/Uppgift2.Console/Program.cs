@@ -76,9 +76,34 @@ namespace Uppgift2.Console
             System.Console.ReadKey();
         }
 
+        /// <summary>
+        /// Prints the third word in a sentence.
+        /// </summary>
         private static void TheThirdWord()
         {
-            throw new NotImplementedException();
+            var words = AskForThreeWordSentence();
+            PrintMessage($"The third word is \"{words[2]}\"");
+        }
+
+        /// <summary>
+        /// Asks for a sentence which contains at least three words.false Splits the sentence through spaces.
+        /// </summary>
+        /// <returns>A string array containing the words from the sentence</returns>
+        private static string[] AskForThreeWordSentence()
+        {
+            for (; ; )
+            {
+                var response = AskForString("Sentence: ").Trim();
+                var temp = response.Split(" ");
+                if (temp.Length >= 3)
+                {
+                    return temp;
+                }
+                else
+                {
+                    PrintMessage("You must give a sentence with at least three words", ConsoleColor.Red);
+                }
+            }
         }
 
         /// <summary>
