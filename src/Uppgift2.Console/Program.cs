@@ -3,7 +3,7 @@ using System;
 
 namespace Uppgift2.Console
 {
-    class Program
+    public class Program
     {
 
         /// <summary>
@@ -128,27 +128,33 @@ namespace Uppgift2.Console
         private static void BuyMovieTickets(int numberOfTickets = 1)
         {
             double total = 0;
+
             for (var i = 0; i < numberOfTickets; i++)
             {
                 int age = AskForAge($"Age for person {(i + 1)}: ");
-                if (age < 20)
-                {
-                    PrintMessage($"Young adult: {80.ToString("C")}");
-                    total += 80;
-                }
-                else if (age > 64)
-                {
-                    PrintMessage($"Senior: {90.ToString("C")}");
-                    total += 90;
-                }
-                else
-                {
-                    PrintMessage($"Standard: {120.ToString("C")}");
-                    total += 120;
-                }
+                var ticketPriceInfo = GetTicketPriceInfo(age);
+                PrintMessage($"{ticketPriceInfo.TicketType}: {ticketPriceInfo.Price.ToString("C")}");
             }
 
             PrintMessage($"Number of persons: {numberOfTickets}\nTotal cost: {total.ToString("C")}");
+        }
+
+        /// <summary>
+        /// Calculates the movie ticket price for a given age.
+        /// </summary>
+        /// <param name="age">The age of the ticket buyer</param>
+        /// <returns>A tuple containing the ticket type info and the ticket price</returns>
+        public static (string TicketType, double Price) GetTicketPriceInfo(int age)
+        {
+            if (age < 20)
+            {
+                return ("Young adult", 80);
+            }
+            if (age > 64)
+            {
+                return ("Senior", 90);
+            }
+            return ("Standard", 120);
         }
 
         /// <summary>
