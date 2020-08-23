@@ -134,6 +134,7 @@ namespace Uppgift2.Console
                 int age = AskForAge($"Age for person {(i + 1)}: ");
                 var ticketPriceInfo = GetTicketPriceInfo(age);
                 PrintMessage($"{ticketPriceInfo.TicketType}: {ticketPriceInfo.Price.ToString("C")}");
+                total += ticketPriceInfo.Price;
             }
 
             PrintMessage($"Number of persons: {numberOfTickets}\nTotal cost: {total.ToString("C")}");
